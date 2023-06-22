@@ -46,7 +46,10 @@ namespace NOAH.Utilities
 
         public String DataConfigurationLocator = "(//div[@class='emi-icons143'][normalize-space()='Data Configuration'])[1]";
         public String DataSetupLocator = "(//div[@class='emi-icons143'][normalize-space()='Data Setup'])[1]";
-        
+        public String DocumentEntryLocator = "//div[contains(text(),'Document Entry')]";
+        public String ReportsAndInquiryLocator = "//div[contains(text(),'Reports and Inquiry')]";
+
+
 
         [SetUp]
         public void OpenBrowser()
