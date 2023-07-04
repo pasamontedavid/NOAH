@@ -1,16 +1,13 @@
+using NOAH.Utilities;
+
 namespace Inventory
 {
-    public class Tests
+    public class Tests:BaseConfig
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
 
-        [Test]
-        public void Test1()
+        public void LoginQNE()
         {
-            Assert.Pass();
+
         }
     }
 }

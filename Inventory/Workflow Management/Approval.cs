@@ -1,4 +1,5 @@
 ﻿using NOAH.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
@@ -40,5 +41,41 @@ namespace NOAH.Workflow_Management
             driver.Value.FindElement(By.CssSelector("#dataset0 td:nth-child(2) .chkapprove")).Click();
             this.Processbtn();
         }
+
+
+
+        [Test]
+        [TestCase("samplethea321@gmail.com", "TestSampleEmail123!")]
+        [TestCase("samplethea456@gmail.com", "TestSampleEmail123!")]
+        [TestCase("samplethea654@gmail.com", "TestSampleEmail123!")]
+        [TestCase("samplethea234@gmail.com", "TestSampleEmail123!")]
+        [TestCase("samplethea345@gmail.com", "TestSampleEmail123!")]
+        [TestCase("samplethea1234@gmail.com", "TestSampleEmail123!")]
+        [Parallelizable(ParallelScope.All)]
+        public void QNELOGIN(String Email,String Pwd)
+        {
+            driver.Value.Url="https://account.qne.cloud/";
+            driver.Value.FindElement(By.CssSelector(".ant-input-lg")).Click();
+            driver.Value.FindElement(By.CssSelector(".ant-input-lg")).SendKeys(Email);
+            driver.Value.FindElement(By.CssSelector(".ng-untouched")).Click();
+            driver.Value.FindElement(By.CssSelector(".ng-untouched")).SendKeys(Pwd);
+            driver.Value.FindElement(By.CssSelector(".ant-btn")).Click();
+
+            String popupmsg = driver.Value.FindElement(By.CssSelector("div[class='alain-default__aside-user-info'] div")).Text;
+            StringAssert.Contains(Email,popupmsg);
+        }
+
+        [Test]
+        public void executer()
+        {
+            driver.Value.Url = "https://account.qne.cloud/";
+            driver.Value.FindElement(By.CssSelector(".ant-input-lg")).Click();
+            driver.Value.FindElement(By.CssSelector(".ant-input-lg")).SendKeys("samplethea1234@gmail.com");
+            driver.Value.FindElement(By.CssSelector(".ng-untouched")).Click();
+            driver.Value.FindElement(By.CssSelector(".ng-untouched")).SendKeys("TestSampleEmail123!");
+            driver.Value.FindElement(By.CssSelector(".ant-btn")).Click();
+        }
+
+
     }
 }

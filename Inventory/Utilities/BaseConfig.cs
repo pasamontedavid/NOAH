@@ -248,6 +248,12 @@ namespace NOAH.Utilities
                 driver.Value.FindElement(By.Id("btnLogoutF")).Click();
                 Thread.Sleep(1000);
             }
+            else
+            {
+                driver.Value.FindElement(By.CssSelector("span[class='hide-this']")).Click();
+                driver.Value.FindElement(By.CssSelector("div[class='width-sm ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-light ant-dropdown-menu-vertical ng-tns-c88-6'] div:nth-child(1)")).Click();
+                
+            }
 
 
         }
@@ -263,26 +269,26 @@ namespace NOAH.Utilities
         public void close()
         {
             var testresult = TestContext.CurrentContext.Result.Outcome.Status;
-            var stacktrace = TestContext.CurrentContext.Result.StackTrace;
+            var stackTrace = TestContext.CurrentContext.Result.StackTrace;
             var Messagelog = TestContext.CurrentContext.Result.Message;
-            String filename = "Screenshot" + DateTime.Now.ToString("h_mm_ss") + ".png";
+            String fileName = "Screenshot" + DateTime.Now.ToString("h_mm_ss") + ".png";
             if(testresult == TestStatus.Failed)
             {
-                test.Fail("TEST FAILED", captureScreenShot(driver.Value, filename) );
-                test.Log(Status.Info,"LOGTRACE" + stacktrace);
-                if (Messagelog != null)
-                {
-                    test.Log(Status.Fail, "Message: " + Messagelog);
-                }
-            }else if (testresult == TestStatus.Passed)
-            {
-                test.Pass("TEST PASSED", captureScreenShot(driver.Value, filename));
-                if (Messagelog != null)
-                {
-                    test.Log(Status.Pass, "Message: " + Messagelog);
-                }
+                test.Fail("Test failed", captureScreenShot(driver.Value, fileName));
+                test.Log(Status.Fail, "test failed with logtrace" + stackTrace);
+                //test.Log(Status.Fail, "test failed with logtrace" + Messagelog);
+
             }
-           
+            else if (testresult == TestStatus.Passed)
+            {
+                //test.Pass("TEST PASSED", captureScreenShot(driver.Value, fileName));
+                
+            }
+            EXTENTREPORTS.Flush();
+            Logout(targetproject);
+            Thread.Sleep(3000);
+            EXTENTREPORTS.Flush();
+
             driver.Value.Quit();
             
         }
