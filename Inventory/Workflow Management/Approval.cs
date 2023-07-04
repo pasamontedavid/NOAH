@@ -44,7 +44,7 @@ namespace NOAH.Workflow_Management
 
 
 
-        [Test]
+        [Test,Category("QNE")]
         [TestCase("samplethea321@gmail.com", "TestSampleEmail123!")]
         [TestCase("samplethea456@gmail.com", "TestSampleEmail123!")]
         [TestCase("samplethea654@gmail.com", "TestSampleEmail123!")]
