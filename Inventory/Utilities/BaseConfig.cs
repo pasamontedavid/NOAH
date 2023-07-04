@@ -283,9 +283,6 @@ namespace NOAH.Utilities
                 }
             }
            
-            Logout(targetproject);
-            Thread.Sleep(3000);
-            EXTENTREPORTS.Flush();
             driver.Value.Quit();
             
         }
